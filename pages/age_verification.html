@@ -9,25 +9,40 @@
     <title>Document</title>
 </head>
 <body>
-    <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Booze Chooser</a>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-          </ul>
-        </div>
-      </nav>
-      <div class = "info">
-      <h1>Age Verfication</h1>
-      <p>By entering our website, you affirm that you are of legal drinking age in your jurisdication and you agree to be Age Verified.</p>
-      <button id = "Of_Age">Confirm: I am of legel age</button>
-      <button id = "Too_Young">No, I am not of legal age</button>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Booze Chooser</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">About</a></li>
+        <li><a href="badges.html">Contact</a></li>
+      </ul>
     </div>
-
+  </nav>
+    <div class = "info">
+      <h1  class="z-depth-5">Age Verfication</h1>
+      <p id = "disclaimer">By entering our website, you affirm that you are of legal drinking age in your jurisdication and you agree to be Age Verified.</p>
+      <!-- <button id = "Of_Age">Confirm: I am of legel age</button>
+      <button id = "Too_Young">No, I am not of legal age</button> -->
+      <input type="text" value = "Click To Enter DOB:"   class="datepicker">
+    </div>
+<!-- card -->
+<!-- <div class="card">
+  <div class="card-image waves-effect waves-block waves-light">
+    <img class="activator" src="images/office.jpg">
+  </div>
+  <div class="card-content">
+    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+    <p><a href="#">This is a link</a></p>
+  </div>
+  <div class="card-reveal">
+    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+    
+  </div>
+</div> -->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./../js/age.js"></script>
 </body>
 </html>

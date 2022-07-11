@@ -1,0 +1,22 @@
+*{
+    font-family: myFirstFont;
+    src: url(../fonts/DelmonDelicate.ttf);
+  }
+
+h1{
+    display:flex;
+    justify-content: center;
+}
+#disclaimer{
+    display:flex;
+    justify-content: center;
+    font-size: x-large;
+}
+
+.info{
+    text-align: center;
+    /* display:flex; */
+    /* justify-content: center;  */
+    /* background: black; */
+
+}
