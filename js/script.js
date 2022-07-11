@@ -23,3 +23,56 @@ $btn_resetAge.click(function(){
 })
 
 //-----------------------------------------------------------^^^^  TEST BUTTON   ^^^^-----------------------------------------------------------------------------------------
+
+
+
+//-----------------------------------------------------------SIDEBAR BELOW-----------------------------------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    // var instances = M.Sidenav.init(elems, options);
+  });
+
+  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+//   var collapsibleElem = document.querySelector('.collapsible');
+//   var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    // var instances = M.Dropdown.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $('.dropdown-trigger').dropdown();
+
+
+function createCard () {
+
+    for (var i = 0; i < 5; i++) {
+    $(`<div class="row"
+            <div class="col s3">
+                <div class="card">
+                    <div class"card-image">
+                        <img src="images/booze-background.jpg">
+                    </div>
+                    <div class="card-content">
+                        <p>Drink Name</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">View Full Recipe</a>
+                    </div>
+                </div>
+            </div>
+        </div>`)}
+}
+
+
+$(`#create-cards`).on('click', createCard);
