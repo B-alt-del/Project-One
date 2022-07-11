@@ -57,22 +57,24 @@ document.addEventListener('DOMContentLoaded', function() {
 function createCard () {
 
     for (var i = 0; i < 5; i++) {
-    $(`<div class="row"
-            <div class="col s3">
-                <div class="card">
-                    <div class"card-image">
-                        <img src="images/booze-background.jpg">
-                    </div>
-                    <div class="card-content">
-                        <p>Drink Name</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">View Full Recipe</a>
-                    </div>
-                </div>
-            </div>
-        </div>`)}
-}
+        
+        document.getElementById("created_card").innerHTML += `
+        <div class="col s3">
+        <div class="card">
+          <div class="card-image">
+            <img src="images/booze-background.jpg">
+          </div>
+          <div class="card-content">
+            <p>Drink Name</p>
+          </div>
+          <div class="card-action">
+            <a href="#">View Full Recipe</a>
+          </div>
+        </div>
+      </div>
+        
+        `
+}}
 
 
 $(`#create-cards`).on('click', createCard);
