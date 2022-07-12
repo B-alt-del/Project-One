@@ -132,6 +132,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // }}
 
 
+
+
 $(`#create-cards`).on('click', get_by_ingredient);
 
 function get_by_ingredient(){
@@ -144,6 +146,7 @@ function get_by_ingredient(){
         console.log(data.drinks);
         console.log(data.drinks.length);
 
+        document.getElementById("created_card").innerHTML = `<div></div>`;
 
         for (var i = 0; i < data.drinks.length; i++) {
         
@@ -166,3 +169,7 @@ function get_by_ingredient(){
         }
     })
 }
+
+//need to add storage for the ids of the drinks shown on cards
+//set up API call for ingredient list
+//change the createCards to erase the previous 
