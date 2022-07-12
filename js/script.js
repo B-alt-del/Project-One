@@ -1,17 +1,12 @@
-//-----------------------------create ingredients array-----------------------//can try sorting by alcoholic after mvp
+//------------------------------------------------------------create ingredients array--------------------------------------------------------------------
 
 var get_ingredients_alphabetically = "https://www.thecocktaildb.com/api/json/v2/9973533/list.php?i=list";
-
 var ingredients_array = [];
 var ingredients_array_object = { "A" : [], "B" : [], "C" : [], "D" : [], "E" : [], "F" : [], "G" : [], "H" : [], "I" : [], "J" : [], "K" : [], "L" : [], "M" : [], "N" : [], "O" : [], "P" : [], "Q" : [], "R" : [], "S" : [], "T" : [], "U" : [], "V" : [], "W" : [], "X" : [], "Y" : [], "Z" : [], "1" : [], "2" : [], "3" : [], "4" : [], "5" : [], "6" : [], "7" : [], "8" : [], "9" : [], "0" : [] };
 
 make_ingredients_array();
 
-
-
-//$(`#console_ingredients`).on('click', function(){console.log(ingredients_array)});
-$(`#console_ingredients`).on('click', function(){console.log(ingredients_array, ingredients_array_object)});
-
+$(`#console_ingredients`).on('click', function(){console.log(ingredients_array_object)});
 
 function make_ingredients_array(){
 
@@ -33,10 +28,74 @@ function make_ingredients_array(){
 
            ingredients_array_object[First].push(ingredients_array[i]);
         }
+    })
+}
+//------------------------------------------------------get info based on ingredients selected------------------------------------------------------------
+
+$(`#create-cards`).on('click', get_by_ingredient);
+$(`#get_selected_drinks_info`).on('click', function(){console.log(selected_drinks_object)});
+
+var selected_drinks_ids = [];
+var selected_drinks_object = [];
+
+function get_by_ingredient(){       //calls all other functions in this section
+
+    var API_drinkIds_by_ingredients = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Vodka,Rum';
+
+    return fetch(API_drinkIds_by_ingredients).then(function(resObject){
+        return resObject.json();
+    }).then(function(data){
+
+        document.getElementById("created_card").innerHTML = `<div></div>`;
+
+        for (var i = 0; i < data.drinks.length; i++) {
+
+            selected_drinks_ids[i] = data.drinks[i].idDrink;
+
+        }
+
+        createCard(data);
+
+        get_info_by_id();
     });
 }
 
 
+function get_info_by_id(){
+
+    var API_drink_by_ID = 'https:www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=';
+
+    for(i = 0; i < selected_drinks_ids.length; i++){
+
+        fetch(API_drink_by_ID + selected_drinks_ids[i]).then(function(resObject){ 
+            return resObject.json();
+        }).then(function(data){
+            selected_drinks_object.push(data.drinks[0])
+        })
+    }
+}
+
+
+
+function createCard(data) {     //possibly create array to store drink id to each card
+
+    for (var i = 0; i < data.drinks.length; i++) {
+        
+        document.getElementById("created_card").innerHTML += `
+            <div class="col s3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="${data.drinks[i].strDrinkThumb}">
+                    </div>
+                    <div class="card-content">
+                        <p>Drink # ${i + 1}: ${data.drinks[i].strDrink} </p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">View Full Recipe</a>
+                    </div>
+                </div>
+            </div>`
+}}
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -47,13 +106,12 @@ function make_ingredients_array(){
 var age_confirmed = localStorage.getItem("Age_Confirmed");    
 
 if((age_confirmed != "true") || (age_confirmed === 'undefined')){
-
     window.location.href="pages/age_verification.html";
-
 }
 
 
-//-----------------------------------------------button to reset local storeage for Age_Confirmed to test --------------------------------------------------
+//-----------------------------------------------button to reset local storeage for Age_Confirmed to test ------------------------------------------------
+
 var $btn_resetAge = $(`#age_reset`); 
 
 
@@ -67,11 +125,11 @@ $btn_resetAge.click(function(){
 
 })
 
-//-----------------------------------------------------------^^^^  TEST BUTTON   ^^^^-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------^^^^  TEST BUTTON   ^^^^---------------------------------------------------------------------
 
 
 
-//-----------------------------------------------------------SIDEBAR BELOW-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------SIDEBAR BELOW--------------------------------------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
@@ -99,216 +157,3 @@ document.addEventListener('DOMContentLoaded', function() {
   $('.dropdown-trigger').dropdown();
 
 
-
-//------------------------------------------------Create Cards With the drink: Name and Image ----------------------------------------------------------
-
-// //--------------getting clicked drink data---------------
-// get_by_ingredient().then(display_drink_listings);
-
-// function get_by_ingredient(){
-//     var url2 = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Vodka,Rum';
-
-//     return fetch(url2).then(function(resObject){
-//         return resObject.json();
-//     });
-
-// }
-
-// function display_drink_listings(drink_data){
-
-//     var drink_by_id = 'https:www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=';
-
-//     fetch(drink_by_id + drink_data.drinks[0].idDrink).then(function(resObject){ 
-//         return resObject.json();
-//     }).then(function(data){                  
-//         console.log(data);
-
-//     });  
-
-// }
-// //-------------------------------------------------------
-
-//var drinks_by_chosen_ingredients = [];  //practicing setting var in create card
-//get_by_ingredient();   //practicing calling in create card function
-
-
-// var drinks_by_object;
-
-// function get_by_ingredient(){
-//     var url2 = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Vodka,Rum';
-
-//     return fetch(url2).then(function(resObject){
-//         return resObject.json();
-//     }).then(function(data){   
-//         drinks_by_object = data.drinks;               
-//         console.log(data);
-//     });
-
-// }
-
-
-
-//-----------------------Populate cards using array of drinks with chosen ingredients---------
-
-// function createCard () {
-
-
-//     for (var i = 0; i < 30; i++) {
-        
-//         document.getElementById("created_card").innerHTML += `
-//         <div class="col s3">
-//         <div class="card">
-//           <div class="card-image">
-//             <img src="images/booze-background.jpg">
-//           </div>
-//           <div class="card-content">
-//             <p>Drink # ${i + 1} </p>
-//           </div>
-//           <div class="card-action">
-//             <a href="#">View Full Recipe</a>
-//           </div>
-//         </div>
-//       </div>
-        
-//         `
-// }}
-
-//----------------------------------create drink object by individual id----------------
-
-// var selected_drinks_ids = [];
-// var selected_drinks_objects = [];
-
-// $(`#create-cards`).on('click', get_by_ingredient);
-// $(`#get_selected_drinks_info`).on('click',get_info_by_id);
-
-// function get_info_by_id(){
-
-//     var drink_by_id = 'https:www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=';
-
-//     for(i = 0; i < selected_drinks_ids.length; i++){
-
-//         fetch(drink_by_id + selected_drinks_ids[i]).then(function(resObject){ 
-//             return resObject.json();
-//         }).then(function(data){                  
-//             selected_drinks_objects[i] = data;
-//         }).then(function(){
-//             console.log(selected_drinks_objects);
-//         })
-//     }
-
-// }
-
-// function get_by_ingredient(){
-//     var url2 = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Vodka,Rum';
-
-//     return fetch(url2).then(function(resObject){
-//         return resObject.json();
-//     }).then(function(data){
-//         // console.log(data);
-//         // console.log(data.drinks);
-//         // console.log(data.drinks.length);
-
-//         document.getElementById("created_card").innerHTML = `<div></div>`;
-
-//         for (var i = 0; i < data.drinks.length; i++) {
-
-//             selected_drinks_ids[i] = data.drinks[i].idDrink;
-
-//         }
-
-//         // console.log(selected_drinks_ids);
-
-//         for (var i = 0; i < data.drinks.length; i++) {
-        
-//             document.getElementById("created_card").innerHTML += `
-
-//             <div class="col s3">
-//             <div class="card">
-//               <div class="card-image">
-//                 <img src="${data.drinks[i].strDrinkThumb}">
-//               </div>
-//               <div class="card-content">
-//                 <p>Drink # ${i + 1}: ${data.drinks[i].strDrink} </p>
-//               </div>
-//               <div class="card-action">
-//                 <a href="#">View Full Recipe</a>
-//               </div>
-//             </div>
-//           </div>
-            
-//             `
-//         }
-//     })
-// }
-
-//--------------------------------------Above works--------------------------------------------
-
-//need to add storage for the ids of the drinks shown on cards
-
-
-var selected_drinks_ids = [];
-var selected_drinks_objects = [];
-
-$(`#create-cards`).on('click', get_by_ingredient);
-$(`#get_selected_drinks_info`).on('click', get_info_by_id);
-
-function get_info_by_id(){
-
-    var drink_by_id = 'https:www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=';
-
-    for(i = 0; i < selected_drinks_ids.length; i++){
-
-        fetch(drink_by_id + selected_drinks_ids[i]).then(function(resObject){ 
-            return resObject.json();
-        }).then(function(data){
-
-            selected_drinks_objects[i] = data;
-
-        }).then(function(){
-            console.log(selected_drinks_objects);
-        })
-    }
-
-}
-
-function get_by_ingredient(){
-    var url2 = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Vodka,Rum';
-
-    return fetch(url2).then(function(resObject){
-        return resObject.json();
-    }).then(function(data){
-        // console.log(data);
-        // console.log(data.drinks);
-        // console.log(data.drinks.length);
-
-        document.getElementById("created_card").innerHTML = `<div></div>`;
-
-        for (var i = 0; i < data.drinks.length; i++) {
-
-            selected_drinks_ids[i] = data.drinks[i].idDrink;
-
-        }
-
-        // console.log(selected_drinks_ids);
-
-        for (var i = 0; i < data.drinks.length; i++) {
-        
-            document.getElementById("created_card").innerHTML += `
-            <div class="col s3">
-            <div class="card">
-              <div class="card-image">
-                <img src="${data.drinks[i].strDrinkThumb}">
-              </div>
-              <div class="card-content">
-                <p>Drink # ${i + 1}: ${data.drinks[i].strDrink} </p>
-              </div>
-              <div class="card-action">
-                <a href="#">View Full Recipe</a>
-              </div>
-            </div>
-          </div>
-            
-            `
-        }
-    })
-}
