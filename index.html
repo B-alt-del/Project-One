@@ -14,9 +14,6 @@
 <body>
 
 
-
-
-
       <!-- nav bar -->
     <nav>
         <div class="nav-wrapper">
@@ -47,55 +44,28 @@
             </div>
         </li>
 
-        <li>
-            <a href="#!"><i class="material-icons">Reset </i>Ingredients</a>
-        </li>
+        <!-- <li>
+            <a href="#!"><i class="material-icons">Reset </i>Ingredients:</a>
+        </li> -->
 
+
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown</a></li>
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="#!">First</a></li>
+          <li><a href="#!">Second</a></li>
+          <li><a href="#!">Third</a></li>
+          <li><a href="#!">Fourth</a></li>
+        </ul>
         
         <li>
             <div class="divider"></div>
         </li>
+        <li id="ingredientBtns">
+                <!-- Dropdown Structure -->
 
-        <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Category 1</a>
+        
 
-        <!-- Dropdown Structure -->
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="#!">one</a></li>
-          <li><a href="#!">two</a></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><a href="#!">three</a></li>
-          <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-          <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-        </ul>
-        <li><div class="divider"></div></li>
-        <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Category 2</a>
-
-        <!-- Dropdown Structure -->
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="#!">one</a></li>
-          <li><a href="#!">two</a></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><a href="#!">three</a></li>
-          <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-          <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-        </ul>
-        <li><div class="divider"></div></li>
-        <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Category 3</a>
-
-        <!-- Dropdown Structure -->
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="#!">one</a></li>
-          <li><a href="#!">two</a></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><a href="#!">three</a></li>
-          <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-          <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-        </ul>
-        <li>
-            <div class="divider">
-            </div>
         </li>
-
         <a class="waves-effect waves-light btn">Find Drinks With Checked Ingredients</a>
 
         <ul>
@@ -115,7 +85,7 @@
         </ul>
     </ul>
       
-    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons btn">INGREDIENT SELECTOR</i></a>
+    <a href="#" data-target="slide-out" class="sidenav-trigger" id="createIngredientBtn"><i class="material-icons btn">INGREDIENT SELECTOR</i></a>
           
     <button id="create-cards">Create Cards</button>  
 
@@ -133,3 +103,15 @@
   <script src="js/script.js"></script>
 </body>
 </html>
+
+
+        <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>B</a> -->
+        <!-- <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="#!">one</a></li>
+          <li><a href="#!">two</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><a href="#!">three</a></li>
+          <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+          <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+        </ul>
+        <li><div class="divider"></div></li>
