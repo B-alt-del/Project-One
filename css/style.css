@@ -1,0 +1,91 @@
+*{
+    font-family: myFirstFont;
+    src: url(../fonts/DelmonDelicate.ttf);
+
+  }
+body{
+    background-image: url("../images/this.webp");
+}
+nav{
+    background-color: transparent;
+    border-bottom: none;
+    box-shadow: none;
+}
+.z-depth-5, .modal{
+    box-shadow: none;
+}
+h1{
+    display:flex;
+    justify-content: center;
+    color: white;
+    background-color: transparent;
+    box-shadow: none;
+    /* text-decoration: underline; */
+}
+#disclaimer{
+    display:flex;
+    justify-content: center;
+    font-size: x-large;
+}
+
+.info{
+    text-align: center;
+    background-color: transparent;
+    /* display:flex; */
+    /* justify-content: center;  */
+    /* background: black; */
+
+}
+
+#disclaimer{
+    color:white;
+}
+a{
+    background-color: transparent;
+}
+.card{
+    background-color: transparent;
+   box-shadow:none;
+}
+#text{
+    color:white;
+}
+/* editing the calendar */
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea{
+    border-bottom:none;
+    font-family: myFirstFont;
+    src: url(../fonts/DelmonDelicate.ttf);
+}
+h2{
+    display:flex;
+    justify-content: center;
+    color:white;
+}
+.about{
+    color: white;
+
+    
+}
+footer{
+    color:white;
+    /* display: flex;
+    align-items: center; */
+    /* display: flex;
+    justify-content: center; */
+    
+    margin: none;
+}
+h3{
+    display:flex;
+    justify-content: center;
+    align-items: flex-end; 
+    /* position: absolute;
+    bottom: 0px; */
+}
+footer p{
+    display:flex;
+    justify-content: center;
+    align-items: flex-end; 
+    /* justify-content: center; */
+    /* margin-left:500px; */
+}
