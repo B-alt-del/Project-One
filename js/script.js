@@ -3,11 +3,14 @@
 var get_ingredients_alphabetically = "https://www.thecocktaildb.com/api/json/v2/9973533/list.php?i=list";
 
 var ingredients_array = [];
+var ingredients_array_object = { "A" : [], "B" : [], "C" : [], "D" : [], "E" : [], "F" : [], "G" : [], "H" : [], "I" : [], "J" : [], "K" : [], "L" : [], "M" : [], "N" : [], "O" : [], "P" : [], "Q" : [], "R" : [], "S" : [], "T" : [], "U" : [], "V" : [], "W" : [], "X" : [], "Y" : [], "Z" : [], "1" : [], "2" : [], "3" : [], "4" : [], "5" : [], "6" : [], "7" : [], "8" : [], "9" : [], "0" : [] };
 
 make_ingredients_array();
 
-// $(`#console_ingredients`).on('click',make_ingredients_array);
-$(`#console_ingredients`).on('click', function(){console.log(ingredients_array)});
+
+
+//$(`#console_ingredients`).on('click', function(){console.log(ingredients_array)});
+$(`#console_ingredients`).on('click', function(){console.log(ingredients_array, ingredients_array_object)});
 
 
 function make_ingredients_array(){
@@ -16,25 +19,26 @@ function make_ingredients_array(){
         return resObject.json();
     }).then(function(data){   
         
+        data.drinks[239].strIngredient1 = "Lemon-lime";
+        data.drinks[240].strIngredient1 = "Lemon";
+
         for(var i = 0; i < data.drinks.length; i++){
 
             ingredients_array[i] = data.drinks[i].strIngredient1;
+        }        
 
+        for(var i = 0; i < ingredients_array.length; i++){
+
+           var First = ingredients_array[i][0];
+
+           ingredients_array_object[First].push(ingredients_array[i]);
         }
-
-        // console.log(ingredients_array);
-        
     });
-
-
 }
 
 
 
-
-
-
-//----------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 
   $(document).ready(function(){
     $('.modal').modal();
@@ -217,6 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //         for (var i = 0; i < data.drinks.length; i++) {
         
 //             document.getElementById("created_card").innerHTML += `
+
 //             <div class="col s3">
 //             <div class="card">
 //               <div class="card-image">
@@ -239,71 +244,71 @@ document.addEventListener('DOMContentLoaded', function() {
 //--------------------------------------Above works--------------------------------------------
 
 //need to add storage for the ids of the drinks shown on cards
-//set up API call for ingredient list
-//change the createCards to erase the previous 
 
 
-// var selected_drinks_ids = [];
-// var selected_drinks_objects = [];
+var selected_drinks_ids = [];
+var selected_drinks_objects = [];
 
-// $(`#create-cards`).on('click', get_by_ingredient);
-// $(`#get_selected_drinks_info`).on('click',get_info_by_id);
+$(`#create-cards`).on('click', get_by_ingredient);
+$(`#get_selected_drinks_info`).on('click', get_info_by_id);
 
-// function get_info_by_id(){
+function get_info_by_id(){
 
-//     var drink_by_id = 'https:www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=';
+    var drink_by_id = 'https:www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=';
 
-//     for(i = 0; i < selected_drinks_ids.length; i++){
+    for(i = 0; i < selected_drinks_ids.length; i++){
 
-//         fetch(drink_by_id + selected_drinks_ids[i]).then(function(resObject){ 
-//             return resObject.json();
-//         }).then(function(data){                  
-//             selected_drinks_objects[i] = data;
-//         }).then(function(){
-//             console.log(selected_drinks_objects);
-//         })
-//     }
+        fetch(drink_by_id + selected_drinks_ids[i]).then(function(resObject){ 
+            return resObject.json();
+        }).then(function(data){
 
-// }
+            selected_drinks_objects[i] = data;
 
-// function get_by_ingredient(){
-//     var url2 = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Vodka,Rum';
+        }).then(function(){
+            console.log(selected_drinks_objects);
+        })
+    }
 
-//     return fetch(url2).then(function(resObject){
-//         return resObject.json();
-//     }).then(function(data){
-//         // console.log(data);
-//         // console.log(data.drinks);
-//         // console.log(data.drinks.length);
+}
 
-//         document.getElementById("created_card").innerHTML = `<div></div>`;
+function get_by_ingredient(){
+    var url2 = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Vodka,Rum';
 
-//         for (var i = 0; i < data.drinks.length; i++) {
+    return fetch(url2).then(function(resObject){
+        return resObject.json();
+    }).then(function(data){
+        // console.log(data);
+        // console.log(data.drinks);
+        // console.log(data.drinks.length);
 
-//             selected_drinks_ids[i] = data.drinks[i].idDrink;
+        document.getElementById("created_card").innerHTML = `<div></div>`;
 
-//         }
+        for (var i = 0; i < data.drinks.length; i++) {
 
-//         // console.log(selected_drinks_ids);
+            selected_drinks_ids[i] = data.drinks[i].idDrink;
 
-//         for (var i = 0; i < data.drinks.length; i++) {
+        }
+
+        // console.log(selected_drinks_ids);
+
+        for (var i = 0; i < data.drinks.length; i++) {
         
-//             document.getElementById("created_card").innerHTML += `
-//             <div class="col s3">
-//             <div class="card">
-//               <div class="card-image">
-//                 <img src="${data.drinks[i].strDrinkThumb}">
-//               </div>
-//               <div class="card-content">
-//                 <p>Drink # ${i + 1}: ${data.drinks[i].strDrink} </p>
-//               </div>
-//               <div class="card-action">
-//                 <a href="#">View Full Recipe</a>
-//               </div>
-//             </div>
-//           </div>
+            document.getElementById("created_card").innerHTML += `
+            <div class="col s3">
+            <div class="card">
+              <div class="card-image">
+                <img src="${data.drinks[i].strDrinkThumb}">
+              </div>
+              <div class="card-content">
+                <p>Drink # ${i + 1}: ${data.drinks[i].strDrink} </p>
+              </div>
+              <div class="card-action">
+                <a href="#">View Full Recipe</a>
+              </div>
+            </div>
+          </div>
             
-//             `
-//         }
-//     })
-// }
+            `
+        }
+    })
+}
