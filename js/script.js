@@ -1,4 +1,9 @@
 
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+
 var age_confirmed = localStorage.getItem("Age_Confirmed");    
 
 if((age_confirmed != "true") || (age_confirmed === 'undefined')){
@@ -53,28 +58,111 @@ document.addEventListener('DOMContentLoaded', function() {
 
   $('.dropdown-trigger').dropdown();
 
+//------------------------------------------------Create Cards With the drink: Name and Image ----------------------------------------------------------
 
-function createCard () {
+// //--------------getting clicked drink data---------------
+// get_by_ingredient().then(display_drink_listings);
 
-    for (var i = 0; i < 5; i++) {
+// function get_by_ingredient(){
+//     var url2 = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Vodka,Rum';
+
+//     return fetch(url2).then(function(resObject){
+//         return resObject.json();
+//     });
+
+// }
+
+// function display_drink_listings(drink_data){
+
+//     var drink_by_id = 'https:www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=';
+
+//     fetch(drink_by_id + drink_data.drinks[0].idDrink).then(function(resObject){ 
+//         return resObject.json();
+//     }).then(function(data){                  
+//         console.log(data);
+
+//     });  
+
+// }
+// //-------------------------------------------------------
+
+//var drinks_by_chosen_ingredients = [];  //practicing setting var in create card
+//get_by_ingredient();   //practicing calling in create card function
+
+
+// var drinks_by_object;
+
+// function get_by_ingredient(){
+//     var url2 = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Vodka,Rum';
+
+//     return fetch(url2).then(function(resObject){
+//         return resObject.json();
+//     }).then(function(data){   
+//         drinks_by_object = data.drinks;               
+//         console.log(data);
+//     });
+
+// }
+
+
+
+//-----------------------Populate cards using array of drinks with chosen ingredients---------
+
+// function createCard () {
+
+
+//     for (var i = 0; i < 30; i++) {
         
-        document.getElementById("created_card").innerHTML += `
-        <div class="col s3">
-        <div class="card">
-          <div class="card-image">
-            <img src="images/booze-background.jpg">
-          </div>
-          <div class="card-content">
-            <p>Drink Name</p>
-          </div>
-          <div class="card-action">
-            <a href="#">View Full Recipe</a>
-          </div>
-        </div>
-      </div>
+//         document.getElementById("created_card").innerHTML += `
+//         <div class="col s3">
+//         <div class="card">
+//           <div class="card-image">
+//             <img src="images/booze-background.jpg">
+//           </div>
+//           <div class="card-content">
+//             <p>Drink # ${i + 1} </p>
+//           </div>
+//           <div class="card-action">
+//             <a href="#">View Full Recipe</a>
+//           </div>
+//         </div>
+//       </div>
         
-        `
-}}
+//         `
+// }}
 
 
-$(`#create-cards`).on('click', createCard);
+$(`#create-cards`).on('click', get_by_ingredient);
+
+function get_by_ingredient(){
+    var url2 = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Vodka,Rum';
+
+    return fetch(url2).then(function(resObject){
+        return resObject.json();
+    }).then(function(data){
+        console.log(data);
+        console.log(data.drinks);
+        console.log(data.drinks.length);
+
+
+        for (var i = 0; i < data.drinks.length; i++) {
+        
+            document.getElementById("created_card").innerHTML += `
+            <div class="col s3">
+            <div class="card">
+              <div class="card-image">
+                <img src="${data.drinks[i].strDrinkThumb}">
+              </div>
+              <div class="card-content">
+                <p>Drink # ${i + 1}: ${data.drinks[i].strDrink} </p>
+              </div>
+              <div class="card-action">
+                <a href="#">View Full Recipe</a>
+              </div>
+            </div>
+          </div>
+            
+            `
+        }
+    })
+}
