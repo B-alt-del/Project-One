@@ -208,13 +208,13 @@ function create_ingredient_btns () {
 
   for(const property in ingredients) {
     document.getElementById('ingredientBtns').innerHTML +=`
-    <li><a class="dropdown-trigger btn" href="#!" data-target="dropdown1">${property}</a></li>
+    <li><a class="dropdown-trigger btn" href="#!" data-target="dropdown1">${property}</a>
     <ul id='dropdown1' class='dropdown-content'>
       <li><a href="#!">First</a></li>
       <li><a href="#!">Second</a></li>
       <li><a href="#!">Third</a></li>
       <li><a href="#!">Fourth</a></li>
-    </ul>`
+    </ul></li>`
   }
 
 
