@@ -133,14 +133,8 @@ $btn_resetAge.click(function(){
 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
-    // var instances = M.Sidenav.init(elems, options);
   });
 
-  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
-//   var collapsibleElem = document.querySelector('.collapsible');
-//   var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
-
-  // Or with jQuery
 
   $(document).ready(function(){
     $('.sidenav').sidenav();
@@ -149,59 +143,54 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.dropdown-trigger');
-    // var instances = M.Dropdown.init(elems, options);
   });
 
-  // Or with jQuery
 
   $('.dropdown-trigger').dropdown();
 
 
 
   function create_ingredient_btns () {
-    var ingredients = {
-      'A': ['a'],
-      'B': ['b'],
-      'C': ['c'],
-      'D': ['d'],
-      'E': ['e'],
-      'F': ['f'],
-      'G': ['g'],
-      'H': ['h'],
-      'I': ['i'],
-      'J': ['j'],
-      'K': ['k'],
-      'L': ['l'],
-      'M': ['m'],
-      'N': ['n'],
-      'O': ['o'],
-      'P': ['p'],
-      'Q': ['q'],
-      'R': ['r'],
-      'S': ['s'],
-      'T': ['t'],
-      'U': ['u'],
-      'V': ['v'],
-      'W': ['w'],
-      'X': ['x'],
-      'Y': ['y'],
-      'Z': ['z']
-    }
-    console.log(ingredients);
+    // var ingredients = {
+    //   'A': ['a'],
+    //   'B': ['b'],
+    //   'C': ['c'],
+    //   'D': ['d'],
+    //   'E': ['e'],
+    //   'F': ['f'],
+    //   'G': ['g'],
+    //   'H': ['h'],
+    //   'I': ['i'],
+    //   'J': ['j'],
+    //   'K': ['k'],
+    //   'L': ['l'],
+    //   'M': ['m'],
+    //   'N': ['n'],
+    //   'O': ['o'],
+    //   'P': ['p'],
+    //   'Q': ['q'],
+    //   'R': ['r'],
+    //   'S': ['s'],
+    //   'T': ['t'],
+    //   'U': ['u'],
+    //   'V': ['v'],
+    //   'W': ['w'],
+    //   'X': ['x'],
+    //   'Y': ['y'],
+    //   'Z': ['z']
+    // }
+    
+    // console.log(ingredients);
     // console.log(ingredients[0].value);
   
-    for(const property in ingredients) {
-      document.getElementById('ingredientBtns').innerHTML +=`
-      <li><a class="dropdown-trigger btn" href="#!" data-target="dropdown1">${property}</a>
-      <ul id='dropdown1' class='dropdown-content'>
-        <li><a href="#!">First</a></li>
-        <li><a href="#!">Second</a></li>
-        <li><a href="#!">Third</a></li>
-        <li><a href="#!">Fourth</a></li>
-      </ul></li>`
+    for(const property in ingredients_array_object) {
+        console.log(property);
+      document.getElementById('dropdownA').innerHTML +=`
+        <li><a href="#!">${property}</a></li>`
     }
   }
 
+  create_ingredient_btns ()
 //----------------------------------------------Sandbox------------------------------------------------------------
   
 $(`#create-cards`).on('click', get_by_ingredient);  //reference
