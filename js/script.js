@@ -35,6 +35,42 @@ function make_ingredients_array(){
     })
 }
 
+//---------------------------------------------------------Page Load  Popular Drinks Fetch--------------------------------------------------------------------
+
+var API_popular_cocktails = "https:/www.thecocktaildb.com/api/json/v2/9973533/popular.php";
+
+popular_homepage();
+
+function popular_homepage(){
+
+return fetch(API_popular_cocktails).then(function(resObject){
+        return resObject.json();
+    }).then(function(data){
+
+        // document.getElementById("created_card").innerHTML = `<div></div>`;
+
+        for (var i = 0; i < data.drinks.length; i++) {
+
+            selected_drinks_ids[i] = data.drinks[i].idDrink;
+
+        }
+
+        // console.log(selected_drinks_ids);
+        // console.log(data.drinks.length);
+
+        get_info_by_id();
+        
+        createCard(data);
+
+    });
+
+
+}
+
+
+
+
+//--------------------------------------------------------Reset Side-Bar & pass in chosen string--------------------------------------------------------------------------------------
 
 var $btn_resetSidebar = $(`#resetSidebar`);
 var selected_ingredients_string = [];
@@ -115,7 +151,7 @@ function createCard(data) {     //possibly create array to store drink id to eac
                         <img src="${data.drinks[i].strDrinkThumb}">
                     </div>
                     <div class="card-content">
-                        <p>Drink # ${i + 1}: ${data.drinks[i].strDrink} </p>
+                        <p> ${data.drinks[i].strDrink} </p>
                     </div>
                     <div class="card-action">
                         <a class="waves-effect waves-light btn modal-trigger" href="#modal1"  onclick="myFunction_cards(event)" id="${selected_drinks_ids[i]}" >View Full Recipe</a>
@@ -132,9 +168,9 @@ function createCard(data) {     //possibly create array to store drink id to eac
 
 var age_confirmed = localStorage.getItem("Age_Confirmed");    
 
-// if((age_confirmed != "true") || (age_confirmed === 'undefined')){
-//     window.location.href="pages/age_verification.html";
-// }
+if((age_confirmed != "true") || (age_confirmed === 'undefined')){
+    window.location.href="pages/age_verification.html";
+}
 
 //-----------------------------------------------button to reset local storeage for Age_Confirmed to test ------------------------------------------------
 
@@ -167,7 +203,7 @@ function fill_dropdown() {
     for(var j = 0; j < alphabet.length; j++){
         for(var i = 0; i < ingredients_array_object[`${alphabet[j]}`].length; i++){
             document.getElementById(`dropdown${alphabet[j]}`).innerHTML +=
-                `<li id = ${alphabet[j]}${i} ><a href="#!" onclick="myFunction(event)">${ingredients_array_object[`${alphabet[j]}`][i]
+                `<li id = ${alphabet[j]}${i} ><a href="#Find_Drinks" onclick="myFunction(event)">${ingredients_array_object[`${alphabet[j]}`][i]
             }`
         }
     }       
