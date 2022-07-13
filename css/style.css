@@ -6,6 +6,11 @@
 body{
     background-image: url("../images/this.webp");
 }
+
+.age_verification_page{
+    background-color: rgb(41, 41, 41);
+}
+
 nav{
     background-color: transparent;
     border-bottom: none;
