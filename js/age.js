@@ -35,7 +35,7 @@ function validAge(age){
         var select = moment(time);
         //If older than 21:
        if( validAge(current.diff(select,'years')) === true){
-            window.location.href = "../pages/about.html";
+            window.location.href = "../pages/index.html";
        }
        else{
            //if your not 21 get rickrolled kiddo
