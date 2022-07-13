@@ -162,22 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 $('.dropdown-trigger').dropdown();
 
-<<<<<<< HEAD
-  $('.dropdown-trigger').dropdown();
-
-
-function fill_dropdown(event) {  
-
-var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-for(var j = 0; j < alphabet.length; j++){
-
-  for(var i = 0; i < ingredients_array_object[`${alphabet[j]}`].length; i++){
-
-      document.getElementById(`dropdown${alphabet[j]}`).innerHTML +=
-      `<li id = ${alphabet[j]}${i} ><a href="#!" onclick="myFunction(event)">${ingredients_array_object[`${alphabet[j]}`][i]}`
-  }
-=======
 function fill_dropdown() {
     var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     for(var j = 0; j < alphabet.length; j++){
@@ -187,7 +171,6 @@ function fill_dropdown() {
             }`
         }
     }       
->>>>>>> 1b9aa93ea6bcac5c2c4f1fb29ce91386f040a7d1
 }
 
 function myFunction(event){ 
@@ -252,97 +235,11 @@ function myFunction_cards(event){
 }
 
 
-<<<<<<< HEAD
-
-var selected_ingredients_string = [];
-
-
-function myFunction(event) { 
-  var ingredientListEl = $('#ingredient-list');
-  var item = event.target.firstChild.data;
-  console.log(item);
-  ingredientListEl.append(
-    
-    `<p>
-      <label>
-        <input type="checkbox" checked="checked"/>
-        <span>${item}</span>
-     </label>
-    </p>`);
-    
-    selected_ingredients_string.push(`${item}`);
-    
-    console.log(selected_ingredients_string)
-
-}
-
-
-// ----------------------------------------------Sandbox------------------------------------------------------------
-  
-// $(`#create-cards`).on('click', get_by_ingredient);  //reference
-// $(`#get_selected_drinks_info`).on('click', function(){console.log(selected_drinks_object)});  //reference
-
-// var selected_drinks_ids = [];  //reference
-// var selected_drinks_object = []; //reference
-
-
-// var selected_ingredients_string = ["Vodka", "Rum"];  //temp, will be empty then filled by button selections
-// var ingredient_string_for_API_search = "Vodka,Rum"    //temp, will be empty then filled by  pass_selected_ingredient_to_string function
-
-// function pass_selected_ingredient_to_string(){  //finished, make sure to initialize variables globaly above
-
-    // ingredient_string_for_API_search = selected_ingredients_string.join(",");
-
-// }
-
-
-// function get_by_ingredient(){       //calls all other functions in this section
-
-//     var API_drinkIds_by_ingredients = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=';  //removed Vodka, Rum
-
-//     return fetch(API_drinkIds_by_ingredients + ingredient_string_for_API_search).then(function(resObject){    //added concatonation
-//         return resObject.json();
-//     }).then(function(data){
-
-//         document.getElementById("created_card").innerHTML = `<div></div>`;
-
-//         for (var i = 0; i < data.drinks.length; i++) {
-
-//             selected_drinks_ids[i] = data.drinks[i].idDrink;
-
-//         }
-
-//         createCard(data);
-
-//         get_info_by_id();
-//     });
-// }
-
-
-
-
-
-//------------------------button selections------------------------------wait until see what button format looks like
-
-// $(`#create-cards`).on('click', get_by_ingredient);  //probably put get_by_ingredient into below function, and run below function on click
-
-// function grab_selected_ingredients_from_buttons(){
-
-// }
-
-//------------------------Fill Modal With Info---------------------------
-
-//  make each item in the letter dropdowns clickable
-//  coonnect selected ingredients to the list under dropdowns
-//  make array with selected ingredients from dropdown
-//  make pass_selected_ingredients_to_string function                                                                   ---------check
-=======
 //----------------------------------------------Sandbox------------------------------------------------------------
 
 //      todo:
 //
 //  make pass_selected_ingredients_to_string function            ---------check
->>>>>>> 1b9aa93ea6bcac5c2c4f1fb29ce91386f040a7d1
 //  make grab_selected_ingredients_from_buttons function
 
 //      edit css of modal to be taller
