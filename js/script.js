@@ -42,6 +42,8 @@ function get_by_ingredient(){       //calls all other functions in this section
 
     var API_drinkIds_by_ingredients = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Vodka,Rum';
 
+    //funciton pass checked items to otherfunction
+
     return fetch(API_drinkIds_by_ingredients).then(function(resObject){
         return resObject.json();
     }).then(function(data){
@@ -103,11 +105,11 @@ function createCard(data) {     //possibly create array to store drink id to eac
     $('.modal').modal();
   });
 
-var age_confirmed = localStorage.getItem("Age_Confirmed");    
+// var age_confirmed = localStorage.getItem("Age_Confirmed");    
 
-if((age_confirmed != "true") || (age_confirmed === 'undefined')){
-    window.location.href="pages/age_verification.html";
-}
+// if((age_confirmed != "true") || (age_confirmed === 'undefined')){
+//     window.location.href="pages/age_verification.html";
+// }
 
 
 //-----------------------------------------------button to reset local storeage for Age_Confirmed to test ------------------------------------------------
