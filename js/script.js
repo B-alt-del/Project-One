@@ -160,9 +160,33 @@ for(var j = 0; j < alphabet.length; j++){
   for(var i = 0; i < ingredients_array_object[`${alphabet[j]}`].length; i++){
 
       document.getElementById(`dropdown${alphabet[j]}`).innerHTML +=
-      `<li id = ${alphabet[j]}${i} ><a href="#!">${ingredients_array_object[`${alphabet[j]}`][i]}`
+      `<li id = ${alphabet[j]}${i} ><a href="#!" onclick="myFunction(event)">${ingredients_array_object[`${alphabet[j]}`][i]}`
   }
 }
+}
+
+
+
+var selected_ingredients_string = [];
+
+
+function myFunction(event) { 
+  var ingredientListEl = $('#ingredient-list');
+  var item = event.target.firstChild.data;
+  console.log(item);
+  ingredientListEl.append(
+    
+    `<p>
+      <label>
+        <input type="checkbox" checked="checked"/>
+        <span>${item}</span>
+     </label>
+    </p>`);
+    
+    selected_ingredients_string.push(`${item}`);
+    
+    console.log(selected_ingredients_string)
+
 }
 
 
@@ -180,7 +204,7 @@ for(var j = 0; j < alphabet.length; j++){
 
 // function pass_selected_ingredient_to_string(){  //finished, make sure to initialize variables globaly above
 
-//     ingredient_string_for_API_search = selected_ingredients_string.join(",");
+    // ingredient_string_for_API_search = selected_ingredients_string.join(",");
 
 // }
 
