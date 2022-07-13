@@ -258,7 +258,7 @@ function myFunction(event){
 
 
 
-// function create_Modal() {     //possibly create array to store drink id to each card
+// function create_Modal() {   //possibly create array to store drink id to each card
         
 //         document.getElementById("modal1").innerHTML += `
 
