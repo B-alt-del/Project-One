@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' /> <!-- the mapbox stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="css/style.css">
 
@@ -93,9 +95,32 @@
     
     </div>
 
+    
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
 
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal bottom-sheet">
+      <div class="modal-content">
+          <h4 id = "modal_drink_name" >Drink Name Placeholder</h4>
+          <p id = "modal_drink_instructions">instructions on how to make the drink, to be filled dynamically</p>
+          <div class="row amount-ingredients">
+              <ul class="col-3 amounts">
+                  <li>1   part        Vodka</li>
+                  <li>2   parts       Rum</li>
+                  <li>1   part        Cranberry Juice</li>
+                  <li>1/2 parts       Lime Juice</li>
+              </ul>
+          </div>
+      </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Save Recipe Locally</a>
+    </div>
+  </div>
 
-
+    
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script> <!-- the mapbox js script -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
