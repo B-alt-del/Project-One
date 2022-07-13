@@ -28,6 +28,8 @@ function make_ingredients_array(){
 
            ingredients_array_object[First].push(ingredients_array[i]);
         }
+
+        fill_dropdown();
     })
 }
 //------------------------------------------------------get info based on ingredients selected------------------------------------------------------------
@@ -133,14 +135,8 @@ $btn_resetAge.click(function(){
 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
-    // var instances = M.Sidenav.init(elems, options);
   });
 
-  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
-//   var collapsibleElem = document.querySelector('.collapsible');
-//   var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
-
-  // Or with jQuery
 
   $(document).ready(function(){
     $('.sidenav').sidenav();
@@ -149,115 +145,86 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.dropdown-trigger');
-    // var instances = M.Dropdown.init(elems, options);
   });
 
-  // Or with jQuery
 
   $('.dropdown-trigger').dropdown();
 
 
+function fill_dropdown() {
 
-  function create_ingredient_btns () {
-    var ingredients = {
-      'A': ['a'],
-      'B': ['b'],
-      'C': ['c'],
-      'D': ['d'],
-      'E': ['e'],
-      'F': ['f'],
-      'G': ['g'],
-      'H': ['h'],
-      'I': ['i'],
-      'J': ['j'],
-      'K': ['k'],
-      'L': ['l'],
-      'M': ['m'],
-      'N': ['n'],
-      'O': ['o'],
-      'P': ['p'],
-      'Q': ['q'],
-      'R': ['r'],
-      'S': ['s'],
-      'T': ['t'],
-      'U': ['u'],
-      'V': ['v'],
-      'W': ['w'],
-      'X': ['x'],
-      'Y': ['y'],
-      'Z': ['z']
+var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+for(var j = 0; j < alphabet.length; j++){
+
+    for(var i = 0; i < ingredients_array_object[`${alphabet[j]}`].length; i++){
+
+        document.getElementById(`dropdown${alphabet[j]}`).innerHTML +=
+        `<li id = ${alphabet[j]}${i} ><a href="#!">${ingredients_array_object[`${alphabet[j]}`][i]}`
     }
-    console.log(ingredients);
-    // console.log(ingredients[0].value);
-  
-    for(const property in ingredients) {
-      document.getElementById('ingredientBtns').innerHTML +=`
-      <li><a class="dropdown-trigger btn" href="#!" data-target="dropdown1">${property}</a>
-      <ul id='dropdown1' class='dropdown-content'>
-        <li><a href="#!">First</a></li>
-        <li><a href="#!">Second</a></li>
-        <li><a href="#!">Third</a></li>
-        <li><a href="#!">Fourth</a></li>
-      </ul></li>`
-    }
-  }
+}
+}
+
+
 
 //----------------------------------------------Sandbox------------------------------------------------------------
   
-$(`#create-cards`).on('click', get_by_ingredient);  //reference
-$(`#get_selected_drinks_info`).on('click', function(){console.log(selected_drinks_object)});  //reference
+// $(`#create-cards`).on('click', get_by_ingredient);  //reference
+// $(`#get_selected_drinks_info`).on('click', function(){console.log(selected_drinks_object)});  //reference
 
-var selected_drinks_ids = [];  //reference
-var selected_drinks_object = []; //reference
-
-
-var selected_ingredients_string = ["Vodka", "Rum"];  //temp, will be empty then filled by button selections
-var ingredient_string_for_API_search = "Vodka,Rum"    //temp, will be empty then filled by  pass_selected_ingredient_to_string function
-
-function pass_selected_ingredient_to_string(){  //finished, make sure to initialize variables globaly above
-
-    ingredient_string_for_API_search = selected_ingredients_string.join(",");
-
-}
+// var selected_drinks_ids = [];  //reference
+// var selected_drinks_object = []; //reference
 
 
-function get_by_ingredient(){       //calls all other functions in this section
+// var selected_ingredients_string = ["Vodka", "Rum"];  //temp, will be empty then filled by button selections
+// var ingredient_string_for_API_search = "Vodka,Rum"    //temp, will be empty then filled by  pass_selected_ingredient_to_string function
 
-    var API_drinkIds_by_ingredients = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=';  //removed Vodka, Rum
+// function pass_selected_ingredient_to_string(){  //finished, make sure to initialize variables globaly above
 
-    return fetch(API_drinkIds_by_ingredients + ingredient_string_for_API_search).then(function(resObject){    //added concatonation
-        return resObject.json();
-    }).then(function(data){
+//     ingredient_string_for_API_search = selected_ingredients_string.join(",");
 
-        document.getElementById("created_card").innerHTML = `<div></div>`;
-
-        for (var i = 0; i < data.drinks.length; i++) {
-
-            selected_drinks_ids[i] = data.drinks[i].idDrink;
-
-        }
-
-        createCard(data);
-
-        get_info_by_id();
-    });
-}
+// }
 
 
+// function get_by_ingredient(){       //calls all other functions in this section
+
+//     var API_drinkIds_by_ingredients = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=';  //removed Vodka, Rum
+
+//     return fetch(API_drinkIds_by_ingredients + ingredient_string_for_API_search).then(function(resObject){    //added concatonation
+//         return resObject.json();
+//     }).then(function(data){
+
+//         document.getElementById("created_card").innerHTML = `<div></div>`;
+
+//         for (var i = 0; i < data.drinks.length; i++) {
+
+//             selected_drinks_ids[i] = data.drinks[i].idDrink;
+
+//         }
+
+//         createCard(data);
+
+//         get_info_by_id();
+//     });
+// }
 
 
 
-//------------------------button selections------------------------------wait until see what button format looks like
 
-$(`#create-cards`).on('click', get_by_ingredient);  //probably put get_by_ingredient into below function, and run below function on click
 
-function grab_selected_ingredients_from_buttons(){
+// //------------------------button selections------------------------------wait until see what button format looks like
 
-}
+// $(`#create-cards`).on('click', get_by_ingredient);  //probably put get_by_ingredient into below function, and run below function on click
+
+// function grab_selected_ingredients_from_buttons(){
+
+// }
 
 //------------------------Fill Modal With Info---------------------------
 
-
+//  make each item the letter dropdowns clickable
+//  connect slected ingredients to list under dropdowns
+//  make array with selected ingredients from dropdown
 //  make pass_selected_ingredients_to_string function                                                                   ---------check
 //  make grab_selected_ingredients_from_buttons function
 //
@@ -278,28 +245,28 @@ function grab_selected_ingredients_from_buttons(){
 
 
 
-function create_Modal() {     //possibly create array to store drink id to each card
+// function create_Modal() {     //possibly create array to store drink id to each card
         
-        document.getElementById("modal1").innerHTML += `
+//         document.getElementById("modal1").innerHTML += `
 
-        <div class="modal-content">
-            <h4 id = "modal_drink_name" >Drink Name Placeholder</h4>
-            <p id = "modal_drink_instructions">instructions on how to make the drink, to be filled dynamically</p>
-            <div class="row amount-ingredients">
-                <ul class="col-3 amounts">
-                    <li>1   part        Vodka</li>
-                    <li>2   parts       Rum</li>
-                    <li>1   part        Cranberry Juice</li>
-                    <li>1/2 parts       Lime Juice</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Save Recipe Locally</a>
-        </div>
-            `
-}
+//         <div class="modal-content">
+//             <h4 id = "modal_drink_name" >Drink Name Placeholder</h4>
+//             <p id = "modal_drink_instructions">instructions on how to make the drink, to be filled dynamically</p>
+//             <div class="row amount-ingredients">
+//                 <ul class="col-3 amounts">
+//                     <li>1   part        Vodka</li>
+//                     <li>2   parts       Rum</li>
+//                     <li>1   part        Cranberry Juice</li>
+//                     <li>1/2 parts       Lime Juice</li>
+//                 </ul>
+//             </div>
+//         </div>
+//         <div class="modal-footer">
+//             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+//             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Save Recipe Locally</a>
+//         </div>
+//             `
+// }
 
 
 // add listener to all cards for click (--> MODAL with selected drinks info)
