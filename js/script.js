@@ -148,26 +148,42 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-  $('.dropdown-trigger').dropdown();
+   $('.dropdown-trigger').dropdown();
 
 
-function fill_dropdown(event) {  
+function fill_dropdown() {
 
-var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 for(var j = 0; j < alphabet.length; j++){
 
-  for(var i = 0; i < ingredients_array_object[`${alphabet[j]}`].length; i++){
+    for(var i = 0; i < ingredients_array_object[`${alphabet[j]}`].length; i++){
 
-      document.getElementById(`dropdown${alphabet[j]}`).innerHTML +=
-      `<li id = ${alphabet[j]}${i} ><a href="#!">${ingredients_array_object[`${alphabet[j]}`][i]}`
-  }
+        document.getElementById(`dropdown${alphabet[j]}`).innerHTML +=
+        `<li id = ${alphabet[j]}${i} ><a href="#!" onclick="myFunction(event)">${ingredients_array_object[`${alphabet[j]}`][i]}`
+    }
 }
 }
 
+function myFunction(event){
+    var ingredientListEl = $('#ingredient-list');
+    var item = event.target.firstChild.data;
+    console.log(item);
 
-// ----------------------------------------------Sandbox------------------------------------------------------------
+    ingredientListEl.append(
+        `<p>
+            <label>
+                <input type="checkbox" checked="checked" />
+                <span>${item}</span>
+            </label>
+        </p>
+        `);
+}
+
+//----------------------------------------------Sandbox------------------------------------------------------------
   
+
+
 // $(`#create-cards`).on('click', get_by_ingredient);  //reference
 // $(`#get_selected_drinks_info`).on('click', function(){console.log(selected_drinks_object)});  //reference
 
@@ -209,9 +225,7 @@ for(var j = 0; j < alphabet.length; j++){
 
 
 
-
-
-//------------------------button selections------------------------------wait until see what button format looks like
+// //------------------------button selections------------------------------wait until see what button format looks like
 
 // $(`#create-cards`).on('click', get_by_ingredient);  //probably put get_by_ingredient into below function, and run below function on click
 
@@ -221,10 +235,10 @@ for(var j = 0; j < alphabet.length; j++){
 
 //------------------------Fill Modal With Info---------------------------
 
-//  make each item in the letter dropdowns clickable
-//  coonnect selected ingredients to the list under dropdowns
+//  make each item the letter dropdowns clickable               ------check
+//  connect slected ingredients to list under dropdowns         ---in progress
 //  make array with selected ingredients from dropdown
-//  make pass_selected_ingredients_to_string function                                                                   ---------check
+//  make pass_selected_ingredients_to_string function            ---------check
 //  make grab_selected_ingredients_from_buttons function
 //
 //
@@ -244,7 +258,7 @@ for(var j = 0; j < alphabet.length; j++){
 
 
 
-// function create_Modal() {     //possibly create array to store drink id to each card
+// function create_Modal() {   //possibly create array to store drink id to each card
         
 //         document.getElementById("modal1").innerHTML += `
 
