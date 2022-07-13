@@ -105,9 +105,9 @@ function createCard(data) {     //possibly create array to store drink id to eac
 
 var age_confirmed = localStorage.getItem("Age_Confirmed");    
 
-if((age_confirmed != "true") || (age_confirmed === 'undefined')){
-    window.location.href="pages/age_verification.html";
-}
+// if((age_confirmed != "true") || (age_confirmed === 'undefined')){
+//     window.location.href="pages/age_verification.html";
+// }
 
 
 //-----------------------------------------------button to reset local storeage for Age_Confirmed to test ------------------------------------------------
