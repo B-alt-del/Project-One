@@ -4,11 +4,9 @@ $('#modal1').modal();
 var get_ingredients_alphabetically = "https://www.thecocktaildb.com/api/json/v2/9973533/list.php?i=list";
 var ingredients_array = [];
 var ingredients_array_object = { "A" : [], "B" : [], "C" : [], "D" : [], "E" : [], "F" : [], "G" : [], "H" : [], "I" : [], "J" : [], "K" : [], "L" : [], "M" : [], "N" : [], "O" : [], "P" : [], "Q" : [], "R" : [], "S" : [], "T" : [], "U" : [], "V" : [], "W" : [], "X" : [], "Y" : [], "Z" : [], "1" : [], "2" : [], "3" : [], "4" : [], "5" : [], "6" : [], "7" : [], "8" : [], "9" : [], "0" : [] };
-var test_El = document.getElementById('ingredient-list'); //test
+var test_El = document.getElementById('ingredient-list');
 
 make_ingredients_array();
-
-$(`#console_ingredients`).on('click', function(){console.log(ingredient_string_for_API_search, test_El.innerHTML)});  //test
 
 function make_ingredients_array(){
 
@@ -46,38 +44,21 @@ function popular_homepage(){
 return fetch(API_popular_cocktails).then(function(resObject){
         return resObject.json();
     }).then(function(data){
-
-        // document.getElementById("created_card").innerHTML = `<div></div>`;
-
         for (var i = 0; i < data.drinks.length; i++) {
-
             selected_drinks_ids[i] = data.drinks[i].idDrink;
-
         }
-
-        // console.log(selected_drinks_ids);
-        // console.log(data.drinks.length);
-
         get_info_by_id();
-        
         createCard(data);
-
     });
-
-
 }
 
-
-
-
-//--------------------------------------------------------Reset Side-Bar & pass in chosen string--------------------------------------------------------------------------------------
+//--------------------------------------------------------Reset Side-Bar & Pass in chosen string--------------------------------------------------------------------------------------
 
 var $btn_resetSidebar = $(`#resetSidebar`);
 var selected_ingredients_string = [];
 var ingredient_string_for_API_search = '';
 
 function pass_selected_ingredient_to_string(){  //finished, make sure to initialize variables globaly above
-
     ingredient_string_for_API_search = selected_ingredients_string.join(",");
     console.log(ingredient_string_for_API_search)
 }
@@ -87,9 +68,7 @@ $btn_resetSidebar.click(function(){
     ingredient_string_for_API_search = '';
 
         test_El.innerHTML = `<li> </li>`
-
 })
-
 
 //------------------------------------------------------get info based on ingredients selected------------------------------------------------------------
 
@@ -101,30 +80,37 @@ var selected_drinks_object = [];
 
 function get_by_ingredient(){    
 
-    pass_selected_ingredient_to_string();
+    if(selected_ingredients_string.length === 0){
+        alert("There were no slections with these ingredients: please reset and try again");
+    }else{
+        pass_selected_ingredient_to_string();
+    
+        var API_drinkIds_by_ingredients = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=';
+    
+        return fetch(API_drinkIds_by_ingredients + ingredient_string_for_API_search).then(function(resObject){
+            return resObject.json();
+        }).then(function(data){
+            
+            if(data.drinks === "None Found"){
+                alert("sorry no drinks with that selection: please reset and try again")
+            }else{
 
-    var API_drinkIds_by_ingredients = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=';
-
-    return fetch(API_drinkIds_by_ingredients + ingredient_string_for_API_search).then(function(resObject){
-        return resObject.json();
-    }).then(function(data){
-
-        document.getElementById("created_card").innerHTML = `<div></div>`;
-
-        for (var i = 0; i < data.drinks.length; i++) {
-
-            selected_drinks_ids[i] = data.drinks[i].idDrink;
-
-        }
-
-        // console.log(selected_drinks_ids);
-        // console.log(data.drinks.length);
-
-        get_info_by_id();
-        
-        createCard(data);
-
-    });
+            document.getElementById("created_card").innerHTML = `<div></div>`;
+    
+            for (var i = 0; i < data.drinks.length; i++) {
+    
+                selected_drinks_ids[i] = data.drinks[i].idDrink;
+    
+            }
+    
+            // console.log(selected_drinks_ids);
+            // console.log(data.drinks.length);
+    
+            get_info_by_id();
+            
+            createCard(data);
+    
+    }});}
 }
 
 function get_info_by_id(){
@@ -226,50 +212,46 @@ function myFunction(event){
 }
 
 function myFunction_cards(event){
-    var modalEl = document.getElementById("modal1");
+
+    var modal_name = document.getElementById("h4_name");
+    var modal_instructions = document.getElementById("p_instructions");
     var selectedDrink;
-
+    var non_null_ing = [];
+    var non_null_amt = [];
+    
+    
     for(var i = 0; i < selected_drinks_object.length; i++){
-
+    
         if(selected_drinks_object[i].idDrink === event.target.id){
-
+    
             selectedDrink = selected_drinks_object[i];
         }
     }
-
-    $('#modal1').modal();
-
-    modalEl.innerHTML= `
-        <div class="modal-content">
-            <h4>${selectedDrink.strDrink}</h4>
-            <p>${selectedDrink.strInstructions}</p>
-            <div>
-                <ul>
-                    <li>${selectedDrink.strMeasure1}  ${selectedDrink.strIngredient1}</li>
-                    <li>${selectedDrink.strMeasure2}  ${selectedDrink.strIngredient2}</li>
-                    <li>${selectedDrink.strMeasure3}  ${selectedDrink.strIngredient3}</li>
-                    <li>${selectedDrink.strMeasure4}  ${selectedDrink.strIngredient4}</li>
-                    <li>${selectedDrink.strMeasure5}  ${selectedDrink.strIngredient5}</li>
-                    <li>${selectedDrink.strMeasure6}  ${selectedDrink.strIngredient6}</li>
-                    <li>${selectedDrink.strMeasure7}  ${selectedDrink.strIngredient7}</li>
-                    <li>${selectedDrink.strMeasure8}  ${selectedDrink.strIngredient8}</li>
-                    <li>${selectedDrink.strMeasure9}  ${selectedDrink.strIngredient9}</li>
-                    <li>${selectedDrink.strMeasure10}  ${selectedDrink.strIngredient10}</li>
-                    <li>${selectedDrink.strMeasure11}  ${selectedDrink.strIngredient11}</li>
-                    <li>${selectedDrink.strMeasure12}  ${selectedDrink.strIngredient12}</li>
-                    <li>${selectedDrink.strMeasure13}  ${selectedDrink.strIngredient13}</li>
-                    <li>${selectedDrink.strMeasure14}  ${selectedDrink.strIngredient14}</li>
-                    <li>${selectedDrink.strMeasure15}  ${selectedDrink.strIngredient15}</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Save Recipe Locally</a>
-        </div>
-    `
-}
-
+    for(var i = 1; i < 16; i++){
+    
+        if((typeof selectedDrink[`strMeasure${i}`]) == 'string'){
+            // console.log(selectedDrink[`strIngredient${i}`])
+            non_null_amt[i-1] = (selectedDrink[`strMeasure${i}`]);
+            document.getElementById(`Li${i}`).innerHTML = `${non_null_amt[i-1]}`;
+            }else{
+                non_null_amt[i-1] = '';
+             }
+     }
+    for(var i = 1; i < 16; i++){
+    
+        if((typeof selectedDrink[`strIngredient${i}`]) == 'string'){
+            // console.log(selectedDrink[`strIngredient${i}`])
+             non_null_ing[i-1] = "  " + selectedDrink[`strIngredient${i}`];
+            document.getElementById(`Li${i}`).innerHTML += `${non_null_ing[i-1]}`;
+    
+            }else{
+                non_null_ing[i-1] = '';
+             }
+     }
+    modal_name.innerHTML =` ${selectedDrink.strDrink}`;
+    modal_instructions.innerHTML = `${selectedDrink.strInstructions}`;
+     $('#modal1').modal();
+    }
 
 //----------------------------------------------Sandbox------------------------------------------------------------
 
@@ -278,4 +260,4 @@ function myFunction_cards(event){
 //  make pass_selected_ingredients_to_string function            ---------check
 //  make grab_selected_ingredients_from_buttons function
 
-//      edit css of modal to be taller
+// //      edit css of modal to be taller
