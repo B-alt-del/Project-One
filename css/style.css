@@ -4,7 +4,7 @@
 
   }
 body{
-    background-image: url("../images/this.webp");
+    background-image: url("../images/alc.webp");
 }
 nav{
     background-color: transparent;
@@ -88,4 +88,9 @@ footer p{
     align-items: flex-end; 
     /* justify-content: center; */
     /* margin-left:500px; */
+}
+#calendar{
+    display:inline-block;
+    height: 20px;
+    width: 20px;
 }
