@@ -15,7 +15,8 @@ function searchMovie(movieIdEl) {
         .then(data =>{ 
             if(data.success === false) {
                 var newRandID = randomIdGen()
-                searchMovie(newRandID)    
+                searchMovie(newRandID)
+                showImage(newRandID)  
             }
 
             console.log(data);
@@ -25,11 +26,14 @@ function searchMovie(movieIdEl) {
         })
 }
 
+function showImage(movieIdEl) {
+    fetch('https://api.themoviedb.org/3/movie/' + movieIdEl + '/images?api_key=' + movieAPI + '&language=en-US')
+        .then(response => response.json())
+        .then(data => console.log(data))
+}
 // random_movie_button.addEventListener("click", function () {
 
 
-//     searchMovie(movieIdEl)
-
 // })
 searchMovie(movieIdEl)
-
+showImage(movieIdEl)
