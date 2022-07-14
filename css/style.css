@@ -7,6 +7,10 @@ body{
     background-image: url("../images/this.webp");
 }
 
+.h4_name{
+    color: black;
+}
+
 .age_verification_page{
     background-color: rgb(41, 41, 41);
 }
