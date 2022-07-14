@@ -262,17 +262,14 @@ var random_movie_button = document.querySelector("#findRandomMovie");
 
 var movieIdEl = randomIdGen();
 
-// var movie_description = '';
-
-
-
 function randomIdGen() {
     return Math.floor(Math.random() * 1000000);
 }
 
 function searchMovie(movieIdEl) {
-    // console.log(movieIdEl)
-    fetch('https://api.themoviedb.org/3/movie/' + movieIdEl + '?api_key=' + movieAPI)
+    var API_movie_url = 'https://api.themoviedb.org/3/movie/' + movieIdEl + '?api_key=' + movieAPI;
+
+    fetch(API_movie_url)
         .then(response => response.json())
         .then(data =>{ 
             if(data.success === false) {
@@ -287,18 +284,17 @@ function searchMovie(movieIdEl) {
                 var newRandID = randomIdGen()
                 searchMovie(newRandID)
                 showImage(newRandID)
-            }
-
-
-            console.log(data);
-            console.log(data.original_title)
-            console.log(data.original_language)
-            console.log(typeof data.original_language)
+            }else{
+                
             document.getElementById("movieStuff").innerHTML = data.original_title;
             document.getElementById("movie_description").innerHTML = data.overview;
-            document.getElementById("movie_genre").innerHTML = data.genres[0].name;
             
-            
+            // document.getElementById("movie_genre").innerHTML = data.genres[0].name;
+            document.getElementById("movie_image").innerHTML = `
+                <img src="https://image.tmdb.org/t/p/w500/${data.poster_path}" alt="No Image Available in Database">
+            `
+            }
+
         })
 }
 
@@ -306,23 +302,33 @@ function showImage(movieIdEl) {
     fetch('https://api.themoviedb.org/3/movie/' + movieIdEl + '/images?api_key=' + movieAPI + '&language=en-US')
         .then(response => response.json())
         .then(function(data){
-            console.log(data);
-            // movie_description = data.original_title;
         })
 }
-
-
 
 searchMovie(movieIdEl)
 showImage(movieIdEl)
 
+
+
 $btn_resetMovie = $("#reset_movie");
 
+$btn_resetMovie.click(function(){
+    
+    searchMovie(movieIdEl)
 
-// random_movie_button.addEventListener("click", function () {
+
+})
 
 
-// })
+// // random_movie_button.addEventListener("click", function () {
+
+//     $btn_resetSidebar.click(function(){
+//         selected_ingredients_string = [];
+//         ingredient_string_for_API_search = '';
+    
+//             test_El.innerHTML = `<li> </li>`
+//     })
+// // })
 
 
 

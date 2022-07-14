@@ -25,10 +25,8 @@
             <!-- second api to find places to buy ingreduents near you -->
             <li class="text-grey-lighten-1"><a href="badges.html">Find Ingredients Near You!</a></li>
             <!-- button that resets age verification -->
-            <li><button id="age_reset" class="waves-effect waves-light btn">Unconfirm Age choices</button></li>
-            <li><button id="get_selected_drinks_info" class="waves-effect waves-light btn">selected drinks info</button></li>
-            <li><button id="console_ingredients" class="waves-effect waves-light btn modal-trigger" href="#modal2">Random Movie</button></li>
-            <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Movie Modal</a> -->
+            <!-- <li><button id="age_reset" class="waves-effect waves-light btn">Unconfirm Age choices</button></li> -->
+            <li><button id="console_ingredients" class="waves-effect waves-light 2196f3 blue btn modal-trigger" href="#modal2">Random Movie Generator</button></li>
           </ul>
         </div>
     </nav>
@@ -189,19 +187,18 @@
         </div>
           </div>  
 
-            <!-- Modal Trigger -->
-  <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Movie Modal</a> -->
-
   <!-- Modal Structure -->
   <div id="modal2" class="modal">
     <div class="modal-content">
-      <h3 id="movieStuff">Modal Header</h3>
+      <h3 id="movieStuff"></h3>
       <h5 id="movie_genre"></h5>
-      <p id="movie_description">A bunch of text</p>
-      <img src="" alt="">
+      <p id="movie_description"></p>
+      <div id="movie_image">
+          <img src="" alt="">
+      </div>
     </div>
     <div class="modal-footer">
-      <a id="reset_movie" href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+      <a id="reset_movie" class="modal-open waves-effect waves-light 2196f3 blue btn" href="#modal2">New Random Movie</a>
     </div>
   </div>
     
