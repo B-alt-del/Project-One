@@ -4,11 +4,9 @@ $('#modal1').modal();
 var get_ingredients_alphabetically = "https://www.thecocktaildb.com/api/json/v2/9973533/list.php?i=list";
 var ingredients_array = [];
 var ingredients_array_object = { "A" : [], "B" : [], "C" : [], "D" : [], "E" : [], "F" : [], "G" : [], "H" : [], "I" : [], "J" : [], "K" : [], "L" : [], "M" : [], "N" : [], "O" : [], "P" : [], "Q" : [], "R" : [], "S" : [], "T" : [], "U" : [], "V" : [], "W" : [], "X" : [], "Y" : [], "Z" : [], "1" : [], "2" : [], "3" : [], "4" : [], "5" : [], "6" : [], "7" : [], "8" : [], "9" : [], "0" : [] };
-var test_El = document.getElementById('ingredient-list'); //test
+var test_El = document.getElementById('ingredient-list');
 
 make_ingredients_array();
-
-$(`#console_ingredients`).on('click', function(){console.log(ingredient_string_for_API_search, test_El.innerHTML)});  //test
 
 function make_ingredients_array(){
 
@@ -61,7 +59,6 @@ var selected_ingredients_string = [];
 var ingredient_string_for_API_search = '';
 
 function pass_selected_ingredient_to_string(){  //finished, make sure to initialize variables globaly above
-
     ingredient_string_for_API_search = selected_ingredients_string.join(",");
     console.log(ingredient_string_for_API_search)
 }
@@ -83,32 +80,37 @@ var selected_drinks_object = [];
 
 function get_by_ingredient(){    
 
-console.log()
+    if(selected_ingredients_string.length === 0){
+        alert("There were no slections with these ingredients: please reset and try again");
+    }else{
+        pass_selected_ingredient_to_string();
+    
+        var API_drinkIds_by_ingredients = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=';
+    
+        return fetch(API_drinkIds_by_ingredients + ingredient_string_for_API_search).then(function(resObject){
+            return resObject.json();
+        }).then(function(data){
+            
+            if(data.drinks === "None Found"){
+                alert("sorry no drinks with that selection: please reset and try again")
+            }else{
 
-    pass_selected_ingredient_to_string();
-
-    var API_drinkIds_by_ingredients = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=';
-
-    return fetch(API_drinkIds_by_ingredients + ingredient_string_for_API_search).then(function(resObject){
-        return resObject.json();
-    }).then(function(data){
-
-        document.getElementById("created_card").innerHTML = `<div></div>`;
-
-        for (var i = 0; i < data.drinks.length; i++) {
-
-            selected_drinks_ids[i] = data.drinks[i].idDrink;
-
-        }
-
-        // console.log(selected_drinks_ids);
-        // console.log(data.drinks.length);
-
-        get_info_by_id();
-        
-        createCard(data);
-
-    });
+            document.getElementById("created_card").innerHTML = `<div></div>`;
+    
+            for (var i = 0; i < data.drinks.length; i++) {
+    
+                selected_drinks_ids[i] = data.drinks[i].idDrink;
+    
+            }
+    
+            // console.log(selected_drinks_ids);
+            // console.log(data.drinks.length);
+    
+            get_info_by_id();
+            
+            createCard(data);
+    
+    }});}
 }
 
 function get_info_by_id(){
