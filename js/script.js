@@ -37,7 +37,7 @@ function make_ingredients_array(){
 
 var API_popular_cocktails = "https:/www.thecocktaildb.com/api/json/v2/9973533/popular.php";
 
-popular_homepage();
+//popular_homepage();
 
 function popular_homepage(){
 
@@ -319,7 +319,7 @@ $btn_resetMovie.click(function(){
 
 })
 
-
+popular_homepage();
 // // random_movie_button.addEventListener("click", function () {
 
 //     $btn_resetSidebar.click(function(){
