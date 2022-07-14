@@ -20,7 +20,7 @@ function validAge(age){
         if( validAge(current.diff(select,'years')) === true){
             
             localStorage.setItem("Age_Confirmed", "true");
-            window.location.href = "../index.html";
+            window.location.href = "../";
 
         }else{
            //if your not 21 get rickrolled kiddo
