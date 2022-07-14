@@ -42,6 +42,7 @@ popular_homepage();
 function popular_homepage(){
 
 return fetch(API_popular_cocktails).then(function(resObject){
+    console.log(resObject);
         return resObject.json();
     }).then(function(data){
         for (var i = 0; i < data.drinks.length; i++) {
