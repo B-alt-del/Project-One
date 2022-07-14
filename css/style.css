@@ -11,6 +11,12 @@ body{
     color: black;
 }
 
+
+#movie_image img {
+    width: 50%;
+    Height: 50%;
+}
+
 .age_verification_page{
     background-color: rgb(41, 41, 41);
 }
