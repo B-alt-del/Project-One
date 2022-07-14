@@ -26,6 +26,7 @@ function searchMovie(movieIdEl) {
         })
 }
 
+
 function showImage(movieIdEl) {
     fetch('https://api.themoviedb.org/3/movie/' + movieIdEl + '/images?api_key=' + movieAPI + '&language=en-US')
         .then(response => response.json())
