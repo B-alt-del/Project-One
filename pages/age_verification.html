@@ -5,58 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="./../css/style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Age Verification Page</title>
 </head>
-<body>
+
+<body class="age_verification_page">
   <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">Booze Chooser</a>
-
-      
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
-    <hr></hr>
   </nav>
-    <div class = "info">
-      <h1  class="z-depth-5">Age Verfication</h1>
-      <hr></hr>
-      
-      <!-- <button id = "Of_Age">Confirm: I am of legel age</button>
-      <button id = "Too_Young">No, I am not of legal age</button> -->
-      <!-- <input type="text" value = "Click To Enter DOB:"   class="datepicker"> -->
-    </div>
-<!-- card -->
+  <div class = "info">
+    <h1  class="z-depth-5">Age Verfication</h1>
+  </div>
 
 
-<div class="col s12 m7">
-  <div class="card horizontal">
-    <!-- <div class="card-image">
-      <img src="../images/alc.jpeg">
-    </div> -->
-    <div class="card-stacked">
-      <div class="card-content">
-        <p id = "disclaimer">By entering our website, you affirm that you are of legal drinking age in your jurisdication and you agree to be Age Verified.</p>
-        <input type="text" value = "Click To Enter DOB:"  id = "text" class="datepicker"> 
+  <div class="col s12 m7">
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <p id = "disclaimer">By entering our website, you affirm that you are of legal drinking age in your jurisdication and you agree to be Age Verified.</p>
+          <input type="text" value = "Click To Enter DOB:"  id = "text" > 
+          <img id = "calendar"src="../assets/images/calendar.png" alt="calendar" class="datepicker"></img>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<h2 id= "about">About</h2>
-<p class= "about" > If you've ever wondered what you could make with minimal cokctail ingredients you've came to the right place. We made this application in order to find a great drink and movie selection. This application is designed 
-  to assist you in making excellent cocktails with the ingredients you possess.  </p>
+  <h2 id= "about">About</h2>
+  <p class= "about" > If you've ever wondered what you could make with minimal cokctail ingredients you've came to the right place. We made this application in order to find a great drink and movie selection. This application is designed 
+    to assist you in making excellent cocktails with the ingredients you possess. </p>
   <footer>
     <h3 id ="contact">Contact</h3>
-    <p> Karma police, arrest this man
-      He talks in maths, he buzzes like a fridge
-      He's like a detuned radio</p>
+    <p> BradsChill@gmail.com spencersullivan1990@gmail.com  brettgillund2@gmail.com elijha2001@gmail.com</p>
   </footer>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="./../js/age.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script src="../js/age.js"></script>
 </body>
 </html>
