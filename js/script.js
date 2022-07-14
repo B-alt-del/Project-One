@@ -73,7 +73,6 @@ $btn_resetSidebar.click(function(){
 //------------------------------------------------------get info based on ingredients selected------------------------------------------------------------
 
 $(`#Find_Drinks`).on('click', get_by_ingredient);
-$(`#get_selected_drinks_info`).on('click', function(){console.log(selected_drinks_object)});
 
 var selected_drinks_ids = [];
 var selected_drinks_object = [];
@@ -253,11 +252,78 @@ function myFunction_cards(event){
      $('#modal1').modal();
     }
 
+//----------------------------------------------Movie Generator------------------------------------------------------------
+
+
+$(`#get_selected_drinks_info`).on('click', function(){console.log(selected_drinks_object)});
+
+var movieAPI = 'cb318d82a4b8ed6ff9428da1aaca7204';
+var random_movie_button = document.querySelector("#findRandomMovie");
+
+var movieIdEl = randomIdGen();
+
+// var movie_description = '';
+
+
+
+function randomIdGen() {
+    return Math.floor(Math.random() * 1000000);
+}
+
+function searchMovie(movieIdEl) {
+    // console.log(movieIdEl)
+    fetch('https://api.themoviedb.org/3/movie/' + movieIdEl + '?api_key=' + movieAPI)
+        .then(response => response.json())
+        .then(data =>{ 
+            if(data.success === false) {
+                var newRandID = randomIdGen()
+                searchMovie(newRandID)
+                showImage(newRandID)
+            }else if(data.adult === true){
+                var newRandID = randomIdGen()
+                searchMovie(newRandID)
+                showImage(newRandID)
+            }else if(data.original_language != 'en'){
+                var newRandID = randomIdGen()
+                searchMovie(newRandID)
+                showImage(newRandID)
+            }
+
+
+            console.log(data);
+            console.log(data.original_title)
+            console.log(data.original_language)
+            console.log(typeof data.original_language)
+            document.getElementById("movieStuff").innerHTML = data.original_title;
+            document.getElementById("movie_description").innerHTML = data.overview;
+            document.getElementById("movie_genre").innerHTML = data.genres[0].name;
+            
+            
+        })
+}
+
+function showImage(movieIdEl) {
+    fetch('https://api.themoviedb.org/3/movie/' + movieIdEl + '/images?api_key=' + movieAPI + '&language=en-US')
+        .then(response => response.json())
+        .then(function(data){
+            console.log(data);
+            // movie_description = data.original_title;
+        })
+}
+
+
+
+searchMovie(movieIdEl)
+showImage(movieIdEl)
+
+$btn_resetMovie = $("#reset_movie");
+
+
+// random_movie_button.addEventListener("click", function () {
+
+
+// })
+
+
+
 //----------------------------------------------Sandbox------------------------------------------------------------
-
-//      todo:
-//
-//  make pass_selected_ingredients_to_string function            ---------check
-//  make grab_selected_ingredients_from_buttons function
-
-// //      edit css of modal to be taller
