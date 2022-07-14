@@ -27,8 +27,8 @@
             <!-- button that resets age verification -->
             <li><button id="age_reset" class="waves-effect waves-light btn">Unconfirm Age choices</button></li>
             <li><button id="get_selected_drinks_info" class="waves-effect waves-light btn">selected drinks info</button></li>
-            <li><button id="console_ingredients" class="waves-effect waves-light btn">console.log ingredients</button></li>
-
+            <li><button id="console_ingredients" class="waves-effect waves-light btn modal-trigger" href="#modal2">Random Movie</button></li>
+            <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Movie Modal</a> -->
           </ul>
         </div>
     </nav>
@@ -188,6 +188,22 @@
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Save Recipe Locally</a>
         </div>
           </div>  
+
+            <!-- Modal Trigger -->
+  <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Movie Modal</a> -->
+
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <h3 id="movieStuff">Modal Header</h3>
+      <h5 id="movie_genre"></h5>
+      <p id="movie_description">A bunch of text</p>
+      <img src="" alt="">
+    </div>
+    <div class="modal-footer">
+      <a id="reset_movie" href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
     
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script> <!-- the mapbox js script -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
