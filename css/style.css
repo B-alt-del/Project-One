@@ -4,6 +4,8 @@
 
   }
 
+body{
+    background-image: url("../images/alc.webp");
 
 .h4_name{
     color: black;
@@ -13,7 +15,8 @@
 #movie_image img {
     width: 50%;
     Height: 50%;
-}
+
+
 
 .age_verification_page{
     background-color: rgb(41, 41, 41);
@@ -102,3 +105,10 @@ footer p{
     /* justify-content: center; */
     /* margin-left:500px; */
 }
+
+#calendar{
+    display:inline-block;
+    height: 20px;
+    width: 20px;
+}
+

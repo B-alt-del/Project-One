@@ -158,6 +158,7 @@ if((age_confirmed != "true") || (age_confirmed === 'undefined')){
     window.location.href="pages/age_verification.html";
 }
 
+
 //-----------------------------------------------button to reset local storeage for Age_Confirmed to test ------------------------------------------------
 
 var $btn_resetAge = $(`#age_reset`); 

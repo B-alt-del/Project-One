@@ -17,12 +17,14 @@ function validAge(age){
         var current = moment();
         var select = moment(time);
         //If older than 21:
+
         if( validAge(current.diff(select,'years')) === true){
             
             localStorage.setItem("Age_Confirmed", "true");
             window.location.href = "../index.html";
 
         }else{
+
            //if your not 21 get rickrolled kiddo
             window.location.href="https://fwesh.yonle.repl.co/";
         }
