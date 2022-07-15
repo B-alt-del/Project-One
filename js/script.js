@@ -42,11 +42,7 @@ popular_homepage()
 function popular_homepage(){
 
  fetch(API_popular_cocktails).then(function(resObject){
-<<<<<<< HEAD
         console.log(resObject);
-=======
-    console.log(resObject);
->>>>>>> ef4693b5f134cbdf7eba1cc260d5cdbe3be6e913
         return resObject.json();
     }).then(function(data){
         for (var i = 0; i < data.drinks.length; i++) {
@@ -158,9 +154,9 @@ function createCard(data) {     //possibly create array to store drink id to eac
 
 var age_confirmed = localStorage.getItem("Age_Confirmed");    
 
-// if((age_confirmed != "true") || (age_confirmed === 'undefined')){
-//     window.location.href="pages/age_verification.html";
-// }
+if((age_confirmed != "true") || (age_confirmed === 'undefined')){
+    window.location.href="pages/age_verification.html";
+}
 
 //-----------------------------------------------button to reset local storeage for Age_Confirmed to test ------------------------------------------------
 
@@ -224,6 +220,10 @@ function myFunction_cards(event){
     var non_null_amt = [];
     
 
+    for(var i = 1; i < 16; i++){
+       document.getElementById(`Li${i}`).innerHTML = ``;
+    }
+
     for(var i = 0; i < selected_drinks_object.length; i++){
 
         if(selected_drinks_object[i].idDrink === event.target.id){
@@ -231,6 +231,8 @@ function myFunction_cards(event){
             selectedDrink = selected_drinks_object[i];
         }
     }
+
+
     for(var i = 1; i < 16; i++){
 
         if((typeof selectedDrink[`strMeasure${i}`]) == 'string'){
