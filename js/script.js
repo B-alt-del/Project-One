@@ -42,7 +42,11 @@ popular_homepage()
 function popular_homepage(){
 
  fetch(API_popular_cocktails).then(function(resObject){
+<<<<<<< HEAD
         console.log(resObject);
+=======
+    console.log(resObject);
+>>>>>>> ef4693b5f134cbdf7eba1cc260d5cdbe3be6e913
         return resObject.json();
     }).then(function(data){
         for (var i = 0; i < data.drinks.length; i++) {
@@ -83,33 +87,33 @@ function get_by_ingredient(){
     if(selected_ingredients_string.length === 0){
         alert("There were no slections with these ingredients: please reset and try again");
     }else{
-        pass_selected_ingredient_to_string();
-    
-        var API_drinkIds_by_ingredients = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=';
-    
-        return fetch(API_drinkIds_by_ingredients + ingredient_string_for_API_search).then(function(resObject){
-            return resObject.json();
-        }).then(function(data){
-            
+    pass_selected_ingredient_to_string();
+
+    var API_drinkIds_by_ingredients = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=';
+
+    return fetch(API_drinkIds_by_ingredients + ingredient_string_for_API_search).then(function(resObject){
+        return resObject.json();
+    }).then(function(data){
+
             if(data.drinks === "None Found"){
                 alert("sorry no drinks with that selection: please reset and try again")
             }else{
 
-            document.getElementById("created_card").innerHTML = `<div></div>`;
-    
-            for (var i = 0; i < data.drinks.length; i++) {
-    
-                selected_drinks_ids[i] = data.drinks[i].idDrink;
-    
-            }
-    
-            // console.log(selected_drinks_ids);
-            // console.log(data.drinks.length);
-    
-            get_info_by_id();
-            
-            createCard(data);
-    
+        document.getElementById("created_card").innerHTML = `<div></div>`;
+
+        for (var i = 0; i < data.drinks.length; i++) {
+
+            selected_drinks_ids[i] = data.drinks[i].idDrink;
+
+        }
+
+        // console.log(selected_drinks_ids);
+        // console.log(data.drinks.length);
+
+        get_info_by_id();
+        
+        createCard(data);
+
     }});}
 }
 
@@ -137,7 +141,7 @@ function createCard(data) {     //possibly create array to store drink id to eac
                         <img src="${data.drinks[i].strDrinkThumb}">
                     </div>
                     <div class="card-content">
-                        <p> ${data.drinks[i].strDrink} </p>
+                        <p>Drink # ${i + 1}: ${data.drinks[i].strDrink} </p>
                     </div>
                     <div class="card-action">
                         <a class="waves-effect waves-light btn modal-trigger" href="#modal1"  onclick="myFunction_cards(event)" id="${selected_drinks_ids[i]}" >View Full Recipe</a>
@@ -154,9 +158,9 @@ function createCard(data) {     //possibly create array to store drink id to eac
 
 var age_confirmed = localStorage.getItem("Age_Confirmed");    
 
-if((age_confirmed != "true") || (age_confirmed === 'undefined')){
-    window.location.href="pages/age_verification.html";
-}
+// if((age_confirmed != "true") || (age_confirmed === 'undefined')){
+//     window.location.href="pages/age_verification.html";
+// }
 
 //-----------------------------------------------button to reset local storeage for Age_Confirmed to test ------------------------------------------------
 
@@ -189,7 +193,7 @@ function fill_dropdown() {
     for(var j = 0; j < alphabet.length; j++){
         for(var i = 0; i < ingredients_array_object[`${alphabet[j]}`].length; i++){
             document.getElementById(`dropdown${alphabet[j]}`).innerHTML +=
-                `<li id = ${alphabet[j]}${i} ><a href="#Find_Drinks" onclick="myFunction(event)">${ingredients_array_object[`${alphabet[j]}`][i]
+                `<li id = ${alphabet[j]}${i} ><a href="#!" onclick="myFunction(event)">${ingredients_array_object[`${alphabet[j]}`][i]
             }`
         }
     }       
@@ -219,16 +223,16 @@ function myFunction_cards(event){
     var non_null_ing = [];
     var non_null_amt = [];
     
-    
+
     for(var i = 0; i < selected_drinks_object.length; i++){
-    
+
         if(selected_drinks_object[i].idDrink === event.target.id){
-    
+
             selectedDrink = selected_drinks_object[i];
         }
     }
     for(var i = 1; i < 16; i++){
-    
+
         if((typeof selectedDrink[`strMeasure${i}`]) == 'string'){
             // console.log(selectedDrink[`strIngredient${i}`])
             non_null_amt[i-1] = (selectedDrink[`strMeasure${i}`]);
@@ -250,7 +254,7 @@ function myFunction_cards(event){
      }
     modal_name.innerHTML =` ${selectedDrink.strDrink}`;
     modal_instructions.innerHTML = `${selectedDrink.strInstructions}`;
-     $('#modal1').modal();
+    $('#modal1').modal();
     }
 
 //----------------------------------------------Movie Generator------------------------------------------------------------
