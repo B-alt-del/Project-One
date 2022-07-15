@@ -81,7 +81,8 @@ var selected_drinks_object = [];
 function get_by_ingredient(){    
 
     if(selected_ingredients_string.length === 0){
-        alert("There were no slections with these ingredients: please reset and try again");
+        // $("#modal3").open();
+        $('#modal3').modal('open');
     }else{
     pass_selected_ingredient_to_string();
 
@@ -92,7 +93,7 @@ function get_by_ingredient(){
     }).then(function(data){
 
             if(data.drinks === "None Found"){
-                alert("sorry no drinks with that selection: please reset and try again")
+                $('#modal4').modal('open');
             }else{
 
         document.getElementById("created_card").innerHTML = `<div></div>`;
